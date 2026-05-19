@@ -1,0 +1,408 @@
+:root {
+  --bg-color: #0f172a;
+  --surface: #111827;
+  --surface-hover: #1f2937;
+  --accent: #c8a97e;
+  --accent-hover: #e6c79c;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --danger: #ef4444;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --transition: all 0.25s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-color);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .brandTitle {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* --- Layout --- */
+.appShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContainer {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 120px 32px 60px; /* Top padding for floating nav */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Navbar (Floating) --- */
+.floatingNavbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.72);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  background: var(--accent);
+  color: var(--bg-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  font-family: var(--font-serif);
+}
+
+.brandTitle {
+  font-size: 22px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navLinks a {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  position: relative;
+}
+
+.navLinks a.active {
+  color: var(--accent);
+}
+
+.navLinks a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.navActions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* --- Buttons --- */
+button, .btn {
+  font-family: var(--font-sans);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.primaryBtn, .luxuryBtn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: var(--bg-color);
+  padding: 10px 20px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.primaryBtn:hover, .luxuryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(200, 169, 126, 0.2);
+}
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.ghostBtn, .ghost {
+  background: transparent;
+  color: var(--text);
+  padding: 10px 20px;
+}
+.ghostBtn:hover, .ghost:hover {
+  background: var(--surface-hover);
+  color: var(--accent);
+}
+
+.btnRow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- Cards & Forms --- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stack { display: flex; flex-direction: column; gap: 24px; }
+.grid { display: grid; gap: 24px; }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.grid.three { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+input, select, textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.muted { color: var(--muted); }
+.errorCard {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-size: 14px;
+}
+
+/* --- Hero Section --- */
+.heroSection {
+  position: relative;
+  min-height: 500px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+  border: 1px solid var(--border);
+}
+
+.heroImage {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.heroSubtitle {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: var(--muted);
+}
+
+.heroTrust {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 40px;
+}
+
+.promiseSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 60px;
+  text-align: center;
+}
+.promiseSection h2 { font-size: 36px; margin-bottom: 20px; }
+.promiseSection p { font-size: 20px; color: var(--muted); max-width: 700px; margin: 0 auto; }
+
+/* --- Reviews --- */
+.reviewCard {
+  background: var(--surface);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.stars { color: var(--accent); font-size: 20px; letter-spacing: 4px; }
+.reviewText { font-size: 16px; font-style: italic; color: var(--text); flex: 1; line-height: 1.8; }
+.reviewerName { font-weight: 600; font-size: 14px; color: var(--muted); }
+
+/* --- Footer --- */
+.luxuryFooter {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 80px 40px 40px;
+  margin-top: 80px;
+}
+
+.footerContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+}
+
+.footerBrand h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.footerBrand p {
+  color: var(--muted);
+  max-width: 300px;
+}
+
+.footerLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footerCol h4 {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.footerCol a {
+  color: var(--muted);
+  font-size: 15px;
+}
+.footerCol a:hover {
+  color: var(--accent);
+}
+
+.footerBottom {
+  max-width: 1400px;
+  margin: 60px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+.socials {
+  display: flex;
+  gap: 24px;
+}
+
+/* --- Misc & Legacy --- */
+.listRow {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.kpiRow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.kpi { font-size: 36px; font-weight: 700; color: var(--accent); font-family: var(--font-serif); }
+
+.pricePill {
+  background: rgba(200, 169, 126, 0.1);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid rgba(200, 169, 126, 0.2);
+}
+
+@media (max-width: 860px) {
+  .mainContainer { padding: 100px 20px 40px; }
+  .floatingNavbar { padding: 0 20px; height: 70px; }
+  .navLinks { display: none; } /* On mobile, we could add a hamburger menu, keeping it simple for now */
+  .footerContainer { grid-template-columns: 1fr; }
+  .footerLinks { grid-template-columns: 1fr; }
+  .heroSection { padding: 40px 20px; }
+  .heroTitle { font-size: 40px; }
+  .kpiRow { grid-template-columns: 1fr; }
+}
