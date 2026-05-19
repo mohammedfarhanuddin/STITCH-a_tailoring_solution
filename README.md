@@ -74,6 +74,16 @@ src/
    ```
    The application will be available at `http://localhost:5173`.
 
+## 🌐 Deployment (Render)
+
+This project includes a `render.yaml` Blueprint file, which makes deploying to [Render.com](https://render.com) almost automatic and ensures React Router handles page refreshes flawlessly.
+
+1. Create a Render account and connect your GitHub repository.
+2. In the Render Dashboard, click **New +** and select **Blueprint**.
+3. Select your repository. Render will automatically read the `render.yaml` file and configure a Static Site.
+4. During setup, Render will prompt you to enter the environment variables (`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`).
+5. Click **Apply** and wait for the deployment to finish!
+
 ## 🛡 Security & Authentication
 
 The application implements a highly robust authentication flow to prevent UI freezing and race conditions:
